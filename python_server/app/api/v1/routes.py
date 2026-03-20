@@ -1,6 +1,6 @@
 from fastapi import APIRouter, BackgroundTasks
 from app.schemas.payloads import OrchestrationRequest, OrchestrationResponse
-from app.core.responses import ApiResponse
+from app.core.responses import ApiResponse, BaseResponseSchema
 from app.core.logging import logger
 from app.core.exceptions import AppError
 
@@ -11,7 +11,7 @@ def run_enterprise_negotiation(request_data: OrchestrationRequest):
     logger.info(f"Running enterprise negotiation for session: {request_data.session_id}")
     # In a real scenario, LLM loops happen here
 
-@router.post("/orchestrate", response_model=OrchestrationResponse)
+@router.post("/orchestrate", response_model=BaseResponseSchema[OrchestrationResponse])
 async def trigger_agents(request: OrchestrationRequest, background_tasks: BackgroundTasks):
     """
     Endpoint hit by the Node.js gateway to start a multi-agent negotiation.

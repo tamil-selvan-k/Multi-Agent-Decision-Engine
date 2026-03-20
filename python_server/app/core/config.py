@@ -1,5 +1,5 @@
 import os
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     PORT: int = 3001
@@ -8,8 +8,6 @@ class Settings(BaseSettings):
     CORS_ORIGINS: str = "*"
     PROJECT_NAME: str = "PS10 Multi-Agent Decision Engine"
     
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 settings = Settings()
