@@ -1,2 +1,5 @@
 {"time": "2026-03-15 19:01:58,281", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session 123"}
 {"time": "2026-03-15 19:01:58,544", "level": "INFO", "module": "multi_agent", "message": "Running enterprise negotiation for session: 123"}
+{"time": "2026-03-20 22:25:36,849", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session 321"}
+{"time": "2026-03-20 22:25:36,861", "level": "INFO", "module": "multi_agent", "message": "Running enterprise negotiation for session: 321"}
+{"time": "2026-03-20 22:43:35,187", "level": "WARNING", "module": "multi_agent", "message": "Validation Error: POST http://localhost:3001/api/v1/orchestrate - [{'type': 'missing', 'loc': ('body', 'session_id'), 'msg': 'Field required', 'input': {}}, {'type': 'missing', 'loc': ('body', 'trigger_event'), 'msg': 'Field required', 'input': {}}, {'type': 'missing', 'loc': ('body', 'department_data'), 'msg': 'Field required', 'input': {}}]"}
