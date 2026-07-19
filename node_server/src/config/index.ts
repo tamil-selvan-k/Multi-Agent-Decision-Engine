@@ -7,7 +7,9 @@ dotenv.config({ path: path.join(process.cwd(), '.env') });
 const envSchema = z.object({
     PORT: z.string().default('3000').transform(Number),
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-    JWT_SECRET: z.string().min(32).default('default_jwt_secret_for_development_replace_me'),
+    JWT_SECRET: z.string().min(32).default('secret-for-multi-agent-platform-dartx'),
+    JWT_EXPIRES_IN: z.string().default('7d'),
+    GOOGLE_CLIENT_ID: z.string().optional().default('sample_google_client_id.apps.googleusercontent.com'),
 });
 
 const envVars = envSchema.safeParse(process.env);
@@ -22,5 +24,10 @@ export const config = {
     nodeEnv: envVars.data.NODE_ENV,
     jwt: {
         secret: envVars.data.JWT_SECRET,
+        expiresIn: envVars.data.JWT_EXPIRES_IN,
+    },
+    google: {
+        clientId: envVars.data.GOOGLE_CLIENT_ID,
     },
 };
+

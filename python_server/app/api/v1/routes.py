@@ -3,6 +3,7 @@ from app.schemas.payloads import OrchestrationRequest, OrchestrationResponse
 from app.core.responses import ApiResponse
 from app.core.logging import logger
 from app.core.exceptions import AppError
+from datetime import datetime # for health check
 
 router = APIRouter()
 
@@ -34,3 +35,15 @@ async def trigger_agents(request: OrchestrationRequest, background_tasks: Backgr
     except Exception as e:
         logger.error(f"Failed to start orchestration: {e}")
         raise AppError(message="Failed to process orchestration request", status_code=500, errors=[str(e)])
+
+# this is a temporary place, this is not an actual place for health end-point
+@router.get('/health', response_model=OrchestrationResponse)
+async def health_check():
+    return ApiResponse.success(
+        data={
+            "status": "ok",
+            "timestamp": datetime.now().isoformat(),
+        },
+        message="Orchestrator agent is running",
+        status_code=200
+    )

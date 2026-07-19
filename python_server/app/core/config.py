@@ -1,15 +1,15 @@
 import os
 from pydantic_settings import BaseSettings
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Settings(BaseSettings):
-    PORT: int = 3001
-    ENV: str = "development"
-    API_VERSION: str = "v1"
-    CORS_ORIGINS: str = "*"
-    PROJECT_NAME: str = "PS10 Multi-Agent Decision Engine"
-    
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
+    PORT: int = int(os.getenv("PORT"))
+    ENV: str = os.getenv("ENV")
+    API_VERSION: str = os.getenv("API_VERSION")
+    CORS_ORIGINS: str = os.getenv("CORS_ORIGINS")
+    PROJECT_NAME: str = "Multi-Agent Decision Engine"
+    DATABASE_URL: str = os.getenv("DATABASE_URL")
 
 settings = Settings()
