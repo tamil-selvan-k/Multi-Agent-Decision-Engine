@@ -3,53 +3,40 @@ import jwt from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
 import { prisma } from '@utils/prisma';
 import { config } from '@config/index';
+import { JwtPayload } from '@appTypes/auth.types';
+import { RoleEnum } from '@appTypes/rbac.enum';
+import { AppError } from '@utils/AppError';
 
 const googleClient = new OAuth2Client(config.google.clientId);
 
-export interface JwtPayload {
-    userId: string;
-    email: string;
-    role: string;
-    permissions: string[];
-}
-
 export class AuthService {
-    /**
-     * Helper to format permissions array from Role model
-     */
     private static extractPermissions(rolePermissions: { permission: { name: string } }[]): string[] {
         return rolePermissions.map((rp) => rp.permission.name);
     }
 
-    /**
-     * Generate JWT for authenticated user
-     */
     public static generateToken(payload: JwtPayload): string {
         return jwt.sign(payload, config.jwt.secret, {
             expiresIn: config.jwt.expiresIn as jwt.SignOptions['expiresIn'],
         });
     }
 
-    /**
-     * Register a new user with Email and Password
-     */
     public static async register(data: { email: string; password: string; name: string; roleName?: string }) {
         const existingUser = await prisma.user.findUnique({
             where: { email: data.email },
         });
 
         if (existingUser) {
-            throw new Error('User with this email already exists');
+            throw new AppError('User with this email already exists', 409);
         }
 
-        const targetRoleName = data.roleName || 'Employee';
+        const targetRoleName = data.roleName || RoleEnum.EXECUTIVE;
         const role = await prisma.role.findUnique({
             where: { name: targetRoleName },
             include: { permissions: { include: { permission: true } } },
         });
 
         if (!role) {
-            throw new Error(`Role '${targetRoleName}' not found`);
+            throw new AppError(`Role '${targetRoleName}' not found`, 404);
         }
 
         const passwordHash = await bcrypt.hash(data.password, 10);
@@ -92,9 +79,6 @@ export class AuthService {
         };
     }
 
-    /**
-     * Authenticate user with Email and Password
-     */
     public static async login(data: { email: string; password: string }) {
         const user = await prisma.user.findUnique({
             where: { email: data.email },
@@ -110,12 +94,12 @@ export class AuthService {
         });
 
         if (!user || !user.passwordHash) {
-            throw new Error('Invalid email or password');
+            throw new AppError('Invalid email or password', 401);
         }
 
         const isValidPassword = await bcrypt.compare(data.password, user.passwordHash);
         if (!isValidPassword) {
-            throw new Error('Invalid email or password');
+            throw new AppError('Invalid email or password', 401);
         }
 
         const permissions = this.extractPermissions(user.role.permissions);
@@ -138,9 +122,6 @@ export class AuthService {
         };
     }
 
-    /**
-     * Authenticate or register user via Google OAuth ID Token
-     */
     public static async loginWithGoogle(idToken: string) {
         let googlePayload;
         try {
@@ -150,11 +131,11 @@ export class AuthService {
             });
             googlePayload = ticket.getPayload();
         } catch (error) {
-            throw new Error('Invalid Google ID token');
+            throw new AppError('Invalid Google ID token', 401);
         }
 
         if (!googlePayload || !googlePayload.email) {
-            throw new Error('Google token payload incomplete');
+            throw new AppError('Google token payload incomplete', 400);
         }
 
         const { email, sub: googleId, name } = googlePayload;
@@ -173,14 +154,13 @@ export class AuthService {
         });
 
         if (!user) {
-            // Find default Employee role
             const defaultRole = await prisma.role.findUnique({
-                where: { name: 'Employee' },
+                where: { name: RoleEnum.EXECUTIVE },
                 include: { permissions: { include: { permission: true } } },
             });
 
             if (!defaultRole) {
-                throw new Error('Default Employee role is missing in system');
+                throw new AppError('Default Executive role is missing in system', 500);
             }
 
             user = await prisma.user.create({
@@ -201,7 +181,6 @@ export class AuthService {
                 },
             });
         } else if (!user.googleId) {
-            // Link existing account with Google ID
             user = await prisma.user.update({
                 where: { id: user.id },
                 data: { googleId },
@@ -237,9 +216,6 @@ export class AuthService {
         };
     }
 
-    /**
-     * Get user profile by ID
-     */
     public static async getProfile(userId: string) {
         const user = await prisma.user.findUnique({
             where: { id: userId },
@@ -255,7 +231,7 @@ export class AuthService {
         });
 
         if (!user) {
-            throw new Error('User not found');
+            throw new AppError('User not found', 404);
         }
 
         const permissions = this.extractPermissions(user.role.permissions);
