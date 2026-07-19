@@ -1,43 +1,28 @@
-from fastapi import APIRouter, BackgroundTasks
-from app.schemas.payloads import OrchestrationRequest, OrchestrationResponse
+from fastapi import APIRouter
+from datetime import datetime
+from app.schemas.decision import OrchestrationRequest
+from app.core.adk_runner import run_adk_orchestration
 from app.core.responses import ApiResponse
 from app.core.logging import logger
-from app.core.exceptions import AppError
-from datetime import datetime # for health check
 
 router = APIRouter()
 
-# Placeholder for agent invocation logic
-def run_enterprise_negotiation(request_data: OrchestrationRequest):
-    logger.info(f"Running enterprise negotiation for session: {request_data.session_id}")
-    # In a real scenario, LLM loops happen here
-
-@router.post("/orchestrate", response_model=OrchestrationResponse)
-async def trigger_agents(request: OrchestrationRequest, background_tasks: BackgroundTasks):
+@router.post("/orchestrate")
+async def trigger_agents(request: OrchestrationRequest):
     """
     Endpoint hit by the Node.js gateway to start a multi-agent negotiation.
+    Runs domain agents, synthesizes decision, and returns full enterprise decision.
     """
-    try:
-        logger.info(f"Received orchestration trigger for session {request.session_id}")
-        
-        # Trigger the orchestrator agent in the background
-        background_tasks.add_task(run_enterprise_negotiation, request)
-        
-        return ApiResponse.success(
-            data={
-                "status": "acknowledged",
-                "session_id": request.session_id,
-                "message": "Orchestrator agent has begun cross-domain negotiation."
-            },
-            message="Request accepted",
-            status_code=202
-        )
-    except Exception as e:
-        logger.error(f"Failed to start orchestration: {e}")
-        raise AppError(message="Failed to process orchestration request", status_code=500, errors=[str(e)])
+    logger.info(f"Received orchestration trigger for session {request.session_id}")
+    decision = run_adk_orchestration(request.session_id, request.parameters)
 
-# this is a temporary place, this is not an actual place for health end-point
-@router.get('/health', response_model=OrchestrationResponse)
+    return ApiResponse.success(
+        data=decision.model_dump(),
+        message="Multi-agent decision orchestration completed",
+        status_code=200
+    )
+
+@router.get('/health')
 async def health_check():
     return ApiResponse.success(
         data={

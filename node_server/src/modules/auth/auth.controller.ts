@@ -1,12 +1,17 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { z } from 'zod';
 import { AuthService } from './auth.service';
+import { asyncHandler } from '@utils/asyncHandler';
+import { ApiResponse } from '@utils/ApiResponse';
+import { AppError } from '@utils/AppError';
+import { RoleEnum } from '@appTypes/rbac.enum';
+import { AuthenticatedRequest } from '@appTypes/auth.types';
 
 const registerSchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
     name: z.string().min(2),
-    roleName: z.enum(['Admin', 'Manager', 'Employee']).optional(),
+    roleName: z.nativeEnum(RoleEnum).optional(),
 });
 
 const loginSchema = z.object({
@@ -19,62 +24,39 @@ const googleAuthSchema = z.object({
 });
 
 export class AuthController {
-    public static async register(req: Request, res: Response, next: NextFunction) {
-        try {
-            const body = registerSchema.parse(req.body);
-            const result = await AuthService.register(body);
-            res.status(201).json({
-                success: true,
-                message: 'User registered successfully',
-                data: result,
-            });
-        } catch (error: any) {
-            next(error);
+    public static register = asyncHandler(async (req: Request) => {
+        const parseResult = registerSchema.safeParse(req.body);
+        if (!parseResult.success) {
+            throw new AppError('Invalid registration data', 400, parseResult.error.issues);
         }
-    }
+        const result = await AuthService.register(parseResult.data);
+        return new ApiResponse(201, result, 'User registered successfully');
+    });
 
-    public static async login(req: Request, res: Response, next: NextFunction) {
-        try {
-            const body = loginSchema.parse(req.body);
-            const result = await AuthService.login(body);
-            res.status(200).json({
-                success: true,
-                message: 'Login successful',
-                data: result,
-            });
-        } catch (error: any) {
-            next(error);
+    public static login = asyncHandler(async (req: Request) => {
+        const parseResult = loginSchema.safeParse(req.body);
+        if (!parseResult.success) {
+            throw new AppError('Invalid login credentials payload', 400, parseResult.error.issues);
         }
-    }
+        const result = await AuthService.login(parseResult.data);
+        return new ApiResponse(200, result, 'Login successful');
+    });
 
-    public static async googleLogin(req: Request, res: Response, next: NextFunction) {
-        try {
-            const { idToken } = googleAuthSchema.parse(req.body);
-            const result = await AuthService.loginWithGoogle(idToken);
-            res.status(200).json({
-                success: true,
-                message: 'Google authentication successful',
-                data: result,
-            });
-        } catch (error: any) {
-            next(error);
+    public static googleLogin = asyncHandler(async (req: Request) => {
+        const parseResult = googleAuthSchema.safeParse(req.body);
+        if (!parseResult.success) {
+            throw new AppError('Google ID token is missing or invalid', 400, parseResult.error.issues);
         }
-    }
+        const result = await AuthService.loginWithGoogle(parseResult.data.idToken);
+        return new ApiResponse(200, result, 'Google authentication successful');
+    });
 
-    public static async getMe(req: Request, res: Response, next: NextFunction) {
-        try {
-            const userPayload = (req as any).user;
-            if (!userPayload || !userPayload.userId) {
-                res.status(401).json({ success: false, message: 'Unauthorized' });
-                return;
-            }
-            const profile = await AuthService.getProfile(userPayload.userId);
-            res.status(200).json({
-                success: true,
-                data: profile,
-            });
-        } catch (error: any) {
-            next(error);
+    public static getMe = asyncHandler(async (req: AuthenticatedRequest) => {
+        const userPayload = req.user;
+        if (!userPayload || !userPayload.userId) {
+            throw new AppError('Unauthorized access', 401);
         }
-    }
+        const profile = await AuthService.getProfile(userPayload.userId);
+        return new ApiResponse(200, profile, 'User profile fetched successfully');
+    });
 }

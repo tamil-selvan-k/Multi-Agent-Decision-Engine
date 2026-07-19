@@ -1,26 +1,62 @@
-// ============================================================
-// API Response wrapper — matches backend ApiResponse class
-// ============================================================
-export interface ApiResponse<T> {
-    statusCode: number;
-    data: T;
-    message: string;
-    success: boolean;
+export type Role = 'Admin' | 'Manager' | 'Analyst' | 'Executive';
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: Role;
+  permissions: string[];
 }
 
-// ============================================================
-// Generic Account / User Types Boilerplate
-// ============================================================
-export interface Account {
+export interface AgentMetric {
+  agent_name: string;
+  recommendation: string;
+  confidence: number;
+  metrics: Record<string, any>;
+}
+
+export interface EnterpriseDecisionData {
+  session_id: string;
+  status: string;
+  final_decision: string;
+  agent_outputs: AgentMetric[];
+  merged_at: string;
+}
+
+export interface DashboardData {
+  kpis: {
+    totalDecisions: number;
+    pendingApprovals: number;
+    negotiationSuccessRate: number;
+    activeAgents: number;
+  };
+  recentDecisions: Array<{
     id: string;
-    name: string;
-    email: string;
-    isActive: boolean;
-    createdAt: string;
-    updatedAt: string;
+    title: string;
+    status: string;
+    timestamp: string;
+  }>;
+  alerts: Array<{
+    id: string;
+    severity: string;
+    message: string;
+    timestamp: string;
+  }>;
 }
 
-export interface LoginResponse {
-    account: Account;
-    token: string;
+export interface SimulationResult {
+  scenarioInput: {
+    demandIncreasePercent: number;
+    budgetReductionPercent: number;
+  };
+  simulationResults: {
+    projectedRevenueImpactPercent: number;
+    projectedInventoryStockoutRisk: string;
+    recommendedReallocation: {
+      expeditedFreightBudget: string;
+      bufferStockUnits: number;
+    };
+    agentsConsensus: string;
+  };
+  timestamp: string;
 }
