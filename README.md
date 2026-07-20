@@ -30,17 +30,17 @@ By utilizing a centralized orchestrator and specialized domain agents, the platf
 ## 💻 Tech Stack
 * **AI & Orchestration:** Google Gemini (Vertex AI), Google ADK (Agent Development Kit).
 * **AI Backend Microservice:** Python, FastAPI.
-* **Core Backend Microservice:** Node.js, TypeScript, Express (or NestJS), WebSockets.
+* **Core Backend Microservice:** Node.js, TypeScript, Express, WebSockets.
 * **Deterministic ML:** Prophet, Scikit-Learn.
-* **Data & Memory:** PostgreSQL (Audit/RBAC), Redis (Agent Session State & Message Broker).
-* **Frontend:** Next.js, React.
-* **Deployment:** Docker, Google Cloud Run / Vertex AI Agent Engine.
+* **Data & Memory:** PostgreSQL (Audit/RBAC), Redis.
+* **Frontend:** React.
+* **Deployment:** Docker, GCP.
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 * Python 3.10+
-* Node.js v24 & npm
+* Node.js v22 & pnpm
 * Docker & Docker Compose
 * Google Cloud Platform account (for Vertex AI API keys)
 
