@@ -46,6 +46,11 @@ htmlcov/
 venv/
 ENV/
 
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
 # OS-specific
 .DS_Store
 Thumbs.db

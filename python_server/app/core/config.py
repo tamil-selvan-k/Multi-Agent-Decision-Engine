@@ -5,11 +5,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Settings(BaseSettings):
-    PORT: int = int(os.getenv("PORT"))
-    ENV: str = os.getenv("ENV")
-    API_VERSION: str = os.getenv("API_VERSION")
-    CORS_ORIGINS: str = os.getenv("CORS_ORIGINS")
-    PROJECT_NAME: str = "Multi-Agent Decision Engine"
-    DATABASE_URL: str = os.getenv("DATABASE_URL")
+    PORT: int = int(os.getenv("PORT", "3001"))
+    ENV: str = os.getenv("ENV", "development")
+    API_VERSION: str = os.getenv("API_VERSION", "v1")
+    CORS_ORIGINS: str = os.getenv("CORS_ORIGINS", "*")
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/multi_agent_db")
+
+    class Config:
+        case_sensitive = True
 
 settings = Settings()
