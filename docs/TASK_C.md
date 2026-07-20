@@ -52,7 +52,7 @@ I verified that all agents are currently in their original, unimplemented state 
   - avg_lead_days: 3
   - confidence: 0.90
   - expedited_freight_available: True
-
+ 
 ### Testing Performed
 I verified the current implementation by:
 1. Testing individual agent imports and execution
