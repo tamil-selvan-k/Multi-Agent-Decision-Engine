@@ -140,26 +140,6 @@ class BudgetImpact(Base):
     remaining_budget = Column(Integer)
     cashflow = Column(String)
 
-class InventoryRisk(Base):
-    __tablename__ = "inventory_risk"
-
-    id = Column(Integer, primary_key=True, index=True)
-
-    risk_score = Column(Float)
-
-    risk_level = Column(String)
-
-class InventorySummary(Base):
-    __tablename__ = "inventory_summary"
-
-    id = Column(Integer, primary_key=True, index=True)
-
-    status = Column(String)
-
-    action = Column(String)
-
-    expected_stockout = Column(Boolean)
-
 class FinancialHistory(Base):
     __tablename__ = "financial_history"
 
