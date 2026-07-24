@@ -35,23 +35,81 @@ class InventoryData(Base):
     warehouse_capacity = Column(Integer)
     safety_stock = Column(Integer)
 
-class OptimizationData(Base):
-    __tablename__ = "optimization_data"
+class InventoryHistory(Base):
+    __tablename__ = "inventory_history"
 
     id = Column(Integer, primary_key=True, index=True)
-    recommended_stock = Column(Integer)
+
+    month = Column(String)
+
+    current_stock = Column(Integer)
+
+    sold = Column(Integer)
+
+    incoming_stock = Column(Integer)
+
+    warehouse_capacity = Column(Integer)
+
+    safety_stock = Column(Integer)
+
+class Supplier(Base):
+    __tablename__ = "supplier"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    name = Column(String)
+
+    lead_time = Column(Integer)          # days
+
+    cost_per_unit = Column(Float)
+
+    reliability = Column(Float)
+
+    rating = Column(Float)
+
+    quality_score = Column(Float)
+
+    on_time_delivery = Column(Float)
+
+    available_stock = Column(Integer)
+
+class SupplierRecommendation(Base):
+    __tablename__ = "supplier_recommendation"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    supplier = Column(String)
+
+    quantity = Column(Integer)
+
+    estimated_cost = Column(Float)
+
+    lead_time = Column(Integer)
+
+    score = Column(Float)
+
+    reason = Column(String)
+
+class DemandForecast(Base):
+    __tablename__ = "demand_forecast"
+
+    id = Column(Integer, primary_key=True, index=True)
+    predicted_demand = Column(Integer)
 
 class WarehouseCapacity(Base):
     __tablename__ = "warehouse_capacity"
 
     id = Column(Integer, primary_key=True, index=True)
-    utilization = Column(Integer)
+    utilization = Column(Float)
+    status = Column(String)
 
 class ReorderRecommendation(Base):
     __tablename__ = "reorder_recommendation"
 
     id = Column(Integer, primary_key=True, index=True)
-    recommendation = Column(String)
+    reorder = Column(Boolean)
+    quantity = Column(Integer)
+    priority = Column(String)
 
 class BudgetData(Base):
     __tablename__ = "budget_data"
@@ -81,6 +139,26 @@ class BudgetImpact(Base):
     budget_exceeded = Column(Boolean)
     remaining_budget = Column(Integer)
     cashflow = Column(String)
+
+class InventoryRisk(Base):
+    __tablename__ = "inventory_risk"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    risk_score = Column(Float)
+
+    risk_level = Column(String)
+
+class InventorySummary(Base):
+    __tablename__ = "inventory_summary"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    status = Column(String)
+
+    action = Column(String)
+
+    expected_stockout = Column(Boolean)
 
 class FinancialHistory(Base):
     __tablename__ = "financial_history"
