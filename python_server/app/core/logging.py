@@ -2,7 +2,7 @@ import logging
 import sys
 import os
 from logging.handlers import RotatingFileHandler
-from app.core.config import settings
+from core.config import settings
 
 # Create logs directory if it doesn't exist
 os.makedirs("logs", exist_ok=True)

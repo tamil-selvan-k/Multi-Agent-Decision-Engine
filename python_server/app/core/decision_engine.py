@@ -1,7 +1,7 @@
 from typing import List
 from datetime import datetime
-from app.schemas.recommendation import AgentRecommendation
-from app.schemas.decision import EnterpriseDecision
+from schemas.recommendation import AgentRecommendation
+from schemas.decision import EnterpriseDecision
 
 def generate_decision(session_id: str, agent_outputs: List[AgentRecommendation]) -> EnterpriseDecision:
     """

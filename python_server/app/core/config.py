@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     API_VERSION: str = os.getenv("API_VERSION", "v1")
     CORS_ORIGINS: str = os.getenv("CORS_ORIGINS", "*")
     DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/multi_agent_db")
-
+    PROJECT_NAME: str = "Multiagent"
     class Config:
         case_sensitive = True
 

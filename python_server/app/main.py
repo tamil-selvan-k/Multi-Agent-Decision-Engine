@@ -2,14 +2,19 @@ import uvicorn
 from fastapi import FastAPI, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
-from app.core.config import settings
-from app.api.v1.routes import router as v1_router
-from app.core.exceptions import (
-    AppError, 
-    app_error_handler, 
+from core.config import settings
+from api.v1.routes import router as v1_router
+from core.exceptions import (
+    AppError,
+    app_error_handler,
     global_exception_handler,
     validation_exception_handler
 )
+
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(
     title=settings.PROJECT_NAME,

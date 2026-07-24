@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, Date, Boolean
-from app.core.database import Base, engine
+from core.database import Base, engine
 
 class SalesData(Base):
     __tablename__ = "sales_data"

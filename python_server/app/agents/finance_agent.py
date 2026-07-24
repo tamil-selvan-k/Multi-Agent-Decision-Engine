@@ -1,43 +1,79 @@
-from app.tools.finance_tools import fetch_budget, anomaly_detection, cost_estimator, budget_impact
-from app.schemas.recommendation import AgentRecommendation
+from google.adk.agents import LlmAgent
+from google.adk.models.lite_llm import LiteLlm
+
+from tools.finance_tools import (
+    fetch_budget,
+    anomaly_detection,
+    cost_estimator,
+    budget_impact
+)
+
+from core.adk_agent_runner import run_adk_agent
+
 
 class FinanceAgent:
-    def __init__(self, name: str = "FinanceAgent"):
-        self.name = name
 
-    def run(self) -> AgentRecommendation:
-        # Step 1: Fetch budget
-        budget_data = fetch_budget()
-        # Step 2: Anomaly detection
-        anomaly = anomaly_detection()
-        # Step 3: Cost estimation
-        cost = cost_estimator()
-        # Step 4: Budget impact
-        impact = budget_impact()
+    def __init__(self):
 
-        # Build recommendation text
-        recommendation_text = (
-            f"Budget data: {budget_data}, "
-            f"Anomaly detection: {anomaly}, "
-            f"Cost estimate: {cost}, "
-            f"Budget impact: {impact}"
+        self.name = "FinanceAgent"
+
+        self.agent = LlmAgent(
+            name="finance_agent",
+
+            model=LiteLlm(
+                model="groq/llama-3.3-70b-versatile"
+            ),
+
+            instruction="""
+You are a Finance Domain Agent.
+
+You are responsible for analyzing financial
+aspects of business decisions.
+
+Analyze the task assigned by the Planner Agent.
+
+Use the available tools when required:
+
+- fetch_budget
+- anomaly_detection
+- cost_estimator
+- budget_impact
+
+Analyze the tool results and provide:
+
+1. Financial situation
+2. Key findings
+3. Cost impact
+4. Budget impact
+5. Financial risks
+6. Recommendation
+7. Confidence
+
+Do not invent data.
+Use only the information available from
+the tools, task, and parameters.
+""",
+
+            tools=[
+                fetch_budget,
+                anomaly_detection,
+                cost_estimator,
+                budget_impact
+            ]
         )
 
-        # Confidence could be based on anomaly score etc.
-        confidence = 0.95 if not anomaly.get("anomaly", True) else 0.70
+    async def run(
+        self,
+        task: str,
+        parameters: dict
+    ):
 
-        metrics = {
-            "budget": budget_data,
-            "anomaly": anomaly,
-            "cost_estimate": cost,
-            "budget_impact": impact
-        }
-
-        return AgentRecommendation(
+        return await run_adk_agent(
+            agent=self.agent,
             agent_name=self.name,
-            recommendation=recommendation_text,
-            confidence=confidence,
-            metrics=metrics,
+            task=task,
+            parameters=parameters
         )
+
 
 finance_agent = FinanceAgent()

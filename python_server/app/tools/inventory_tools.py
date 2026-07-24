@@ -1,6 +1,5 @@
-from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app import models
+from core.database import SessionLocal
+import models
 
 def fetch_inventory():
     """Fetch current inventory from warehouse.

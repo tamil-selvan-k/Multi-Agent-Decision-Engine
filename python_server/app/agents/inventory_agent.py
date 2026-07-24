@@ -1,44 +1,102 @@
-from app.tools.inventory_tools import fetch_inventory, optimize_inventory, warehouse_capacity, reorder_recommendation
-from app.schemas.recommendation import AgentRecommendation
+from google.adk.agents import LlmAgent
+from google.adk.models.lite_llm import LiteLlm
+
+from tools.inventory_tools import (
+    fetch_inventory,
+    optimize_inventory,
+    warehouse_capacity,
+    reorder_recommendation
+)
+
+from core.adk_agent_runner import run_adk_agent
+
 
 class InventoryAgent:
-    def __init__(self, name: str = "InventoryAgent"):
-        self.name = name
 
-    def run(self) -> AgentRecommendation:
-        # Step 1: Fetch inventory
-        inventory = fetch_inventory()
-        # Step 2: Optimize inventory
-        optimization = optimize_inventory()
-        # Step 3: Check warehouse capacity
-        capacity = warehouse_capacity()
-        # Step 4: Get reorder recommendation
-        reorder_rec = reorder_recommendation()
+    def __init__(self):
 
-        # Build recommendation text
-        recommendation_text = (
-            f"Current stock: {inventory['current_stock']} units, "
-            f"warehouse capacity: {inventory['warehouse_capacity']} units, "
-            f"utilization: {capacity['utilization']}%, "
-            f"recommended stock: {optimization['recommended_stock']} units, "
-            f"action: {reorder_rec}"
+        self.name = "InventoryAgent"
+
+        self.agent = LlmAgent(
+
+            name="inventory_agent",
+
+            model=LiteLlm(
+                model="groq/llama-3.3-70b-versatile"
+            ),
+
+            instruction="""
+You are an Inventory Domain Agent.
+
+You are responsible for analyzing inventory
+and warehouse-related business problems.
+
+You have access to these tools:
+
+1. fetch_inventory
+   - Fetch current inventory levels
+   - Fetch warehouse capacity information
+
+2. optimize_inventory
+   - Determine optimal inventory levels
+
+3. warehouse_capacity
+   - Analyze warehouse utilization
+
+4. reorder_recommendation
+   - Determine whether inventory should be reordered
+
+Analyze the task assigned by the Planner Agent.
+
+Use the available tools whenever necessary.
+
+Consider:
+
+- Current stock
+- Warehouse capacity
+- Warehouse utilization
+- Recommended stock level
+- Reorder requirements
+
+Return ONLY valid JSON:
+
+{
+    "agent_name": "InventoryAgent",
+    "recommendation": "Clear inventory recommendation",
+    "confidence": 0.90,
+    "metrics": {
+        "inventory": {},
+        "optimization": {},
+        "capacity": {},
+        "reorder_recommendation": {}
+    }
+}
+
+Do not invent data.
+Use only information returned by the tools,
+the assigned task, and provided parameters.
+""",
+
+            tools=[
+                fetch_inventory,
+                optimize_inventory,
+                warehouse_capacity,
+                reorder_recommendation
+            ]
         )
 
-        # Confidence could be based on data quality; we'll use a fixed high confidence
-        confidence = 0.89
+    async def run(
+        self,
+        task: str,
+        parameters: dict
+    ):
 
-        metrics = {
-            "inventory": inventory,
-            "optimization": optimization,
-            "capacity": capacity,
-            "reorder_recommendation": reorder_rec
-        }
-
-        return AgentRecommendation(
+        return await run_adk_agent(
+            agent=self.agent,
             agent_name=self.name,
-            recommendation=recommendation_text,
-            confidence=confidence,
-            metrics=metrics,
+            task=task,
+            parameters=parameters
         )
+
 
 inventory_agent = InventoryAgent()

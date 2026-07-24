@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app import models
+from core.database import SessionLocal
+import models as models
 
 def fetch_budget():
     """Fetch department budgets and current spending.

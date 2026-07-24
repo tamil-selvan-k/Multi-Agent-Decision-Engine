@@ -1,11 +1,27 @@
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field
-from app.schemas.recommendation import AgentRecommendation
+from schemas.recommendation import AgentRecommendation
+from typing import Any, Dict
+from pydantic import BaseModel, Field
+
 
 class OrchestrationRequest(BaseModel):
-    session_id: str = Field(..., description="Unique session ID for the negotiation process")
-    parameters: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Scenario metrics and variables")
 
+    session_id: str = Field(
+        ...,
+        description="Unique session ID"
+    )
+
+    user_input: str = Field(
+        ...,
+        description="Business request to analyze"
+    )
+
+    parameters: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="Additional scenario parameters"
+    )
+    
 class EnterpriseDecision(BaseModel):
     session_id: str
     status: str

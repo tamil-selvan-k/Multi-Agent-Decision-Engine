@@ -1,20 +1,27 @@
 from fastapi import APIRouter
 from datetime import datetime
-from app.schemas.decision import OrchestrationRequest
-from app.core.adk_runner import run_adk_orchestration
-from app.core.responses import ApiResponse
-from app.core.logging import logger
+
+from schemas.decision import OrchestrationRequest
+from core.adk_runner import run_adk_orchestration
+from core.responses import ApiResponse
+from core.logging import logger
 
 router = APIRouter()
 
+
 @router.post("/orchestrate")
 async def trigger_agents(request: OrchestrationRequest):
-    """
-    Endpoint hit by the Node.js gateway to start a multi-agent negotiation.
-    Runs domain agents, synthesizes decision, and returns full enterprise decision.
-    """
-    logger.info(f"Received orchestration trigger for session {request.session_id}")
-    decision = run_adk_orchestration(request.session_id, request.parameters)
+
+    logger.info(
+        f"Received orchestration trigger "
+        f"for session {request.session_id}"
+    )
+
+    decision = await run_adk_orchestration(
+        session_id=request.session_id,
+        user_input=request.user_input,
+        parameters=request.parameters
+    )
 
     return ApiResponse.success(
         data=decision.model_dump(),
@@ -22,8 +29,9 @@ async def trigger_agents(request: OrchestrationRequest):
         status_code=200
     )
 
-@router.get('/health')
+@router.get("/health")
 async def health_check():
+
     return ApiResponse.success(
         data={
             "status": "ok",

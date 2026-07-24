@@ -1,0 +1,904 @@
+{"time": "2026-07-24 15:21:06,273", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session test-session-001"}
+{"time": "2026-07-24 15:21:06,929", "level": "ERROR", "module": "multi_agent", "message": "Unhandled Exception: POST http://localhost:8000/api/v1/orchestrate - object EnterpriseDecision can't be used in 'await' expression"}
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\api\v1\routes.py", line 24, in trigger_agents
+    decision = await run_adk_orchestration(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+TypeError: object EnterpriseDecision can't be used in 'await' expression
+{"time": "2026-07-24 15:21:33,473", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session test-session-001"}
+{"time": "2026-07-24 15:21:33,542", "level": "ERROR", "module": "multi_agent", "message": "Unhandled Exception: POST http://localhost:8000/api/v1/orchestrate - object EnterpriseDecision can't be used in 'await' expression"}
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\api\v1\routes.py", line 24, in trigger_agents
+    decision = await run_adk_orchestration(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+TypeError: object EnterpriseDecision can't be used in 'await' expression
+{"time": "2026-07-24 15:22:15,412", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session test-session-001"}
+{"time": "2026-07-24 15:24:49,059", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session test-session-001"}
+{"time": "2026-07-24 15:24:49,060", "level": "ERROR", "module": "multi_agent", "message": "Unhandled Exception: POST http://localhost:8000/api/v1/orchestrate - object async_generator can't be used in 'await' expression"}
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\api\v1\routes.py", line 20, in trigger_agents
+    decision = await run_adk_orchestration(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\core\adk_runner.py", line 68, in run_adk_orchestration
+    plan = await planner_agent.plan(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\agents\planner_agent.py", line 81, in plan
+    response = await self.agent.run_async(prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object async_generator can't be used in 'await' expression
+{"time": "2026-07-24 15:29:52,474", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session test-session-001"}
+{"time": "2026-07-24 15:29:52,475", "level": "ERROR", "module": "multi_agent", "message": "Unhandled Exception: POST http://localhost:8000/api/v1/orchestrate - object async_generator can't be used in 'await' expression"}
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\api\v1\routes.py", line 20, in trigger_agents
+    decision = await run_adk_orchestration(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\core\adk_runner.py", line 68, in run_adk_orchestration
+    plan = await planner_agent.plan(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\agents\planner_agent.py", line 185, in plan
+    response = await self.agent.run_async(prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object async_generator can't be used in 'await' expression
+{"time": "2026-07-24 15:30:11,892", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session test-session-001"}
+{"time": "2026-07-24 15:30:11,893", "level": "ERROR", "module": "multi_agent", "message": "Unhandled Exception: POST http://localhost:8000/api/v1/orchestrate - object async_generator can't be used in 'await' expression"}
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\api\v1\routes.py", line 20, in trigger_agents
+    decision = await run_adk_orchestration(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\core\adk_runner.py", line 68, in run_adk_orchestration
+    plan = await planner_agent.plan(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\agents\planner_agent.py", line 185, in plan
+    response = await self.agent.run_async(prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object async_generator can't be used in 'await' expression
+{"time": "2026-07-24 15:34:16,689", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session test-session-001"}
+{"time": "2026-07-24 15:34:17,116", "level": "ERROR", "module": "multi_agent", "message": "Unhandled Exception: POST http://localhost:8000/api/v1/orchestrate - No API key was provided. Please pass a valid API key. Learn how to create an API key at https://ai.google.dev/gemini-api/docs/api-key."}
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 601, in _drive_root_node
+    await root_ctx._run_node_internal(
+    ...<3 lines>...
+    )
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\context.py", line 603, in _run_node_internal
+    raise DynamicNodeFailError(
+    ...<3 lines>...
+    )
+google.adk.workflow._errors.DynamicNodeFailError: Dynamic node planner_agent failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\api\v1\routes.py", line 20, in trigger_agents
+    decision = await run_adk_orchestration(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\core\adk_runner.py", line 68, in run_adk_orchestration
+    plan = await planner_agent.plan(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\agents\planner_agent.py", line 125, in plan
+    async for event in self.runner.run_async(
+    ...<11 lines>...
+                final_text = event.content.parts[0].text
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 1111, in run_async
+    async for event in agen:
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 628, in _run_node_async
+    await self._cleanup_root_task(task, self.agent.name)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 906, in _cleanup_root_task
+    await task
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 610, in _drive_root_node
+    raise e.error
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_node_runner.py", line 136, in run
+    await self._execute_node(ctx, node_input)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_node_runner.py", line 274, in _execute_node
+    await self._run_node_loop(ctx, node_input)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_node_runner.py", line 288, in _run_node_loop
+    async for event in agen:
+      self._track_event_in_context(event, ctx)
+      await self._enqueue_event(event, ctx)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_base_node.py", line 166, in run
+    async for item in agen:
+    ...<12 lines>...
+        yield Event(output=validated)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\llm_agent.py", line 601, in _run_impl
+    async for event in agen:
+    ...<4 lines>...
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_llm_agent_wrapper.py", line 370, in run_llm_agent_as_node
+    async for event in run_iter:
+    ...<22 lines>...
+        break
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\base_agent.py", line 306, in run_async
+    async for event in agen:
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\llm_agent.py", line 550, in _run_async_impl
+    async for event in agen:
+    ...<8 lines>...
+        should_pause = True
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 932, in run_async
+    async for event in agen:
+      last_event = event
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1011, in _run_one_step_async
+    async for llm_response in agen:
+    ...<13 lines>...
+          yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1453, in _call_llm_async
+    async for event in agen:
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1431, in _call_llm_with_tracing
+    async for llm_response in agen:
+    ...<18 lines>...
+      yield llm_response
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1514, in _run_and_handle_error
+    async for response in agen:
+      yield response
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 418, in _run_and_handle_error
+    raise model_error
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 395, in _run_and_handle_error
+    async for llm_response in agen:
+      tel_ctx.record_llm_response(invocation_context, llm_response)
+      yield llm_response
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 197, in generate_content_async
+    await self._preprocess_request(llm_request)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 507, in _preprocess_request
+    if self._api_backend == GoogleLLMVariant.GEMINI_API:
+       ^^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\functools.py", line 1026, in __get__
+    val = self.func(instance)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 369, in _api_backend
+    if self.api_client.vertexai
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\functools.py", line 1026, in __get__
+    val = self.func(instance)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 363, in api_client
+    return Client(**kwargs)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\client.py", line 359, in __init__
+    self._api_client = self._get_api_client(
+                       ~~~~~~~~~~~~~~~~~~~~^
+        vertexai=resolved_vertexai,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        http_options=http_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\client.py", line 411, in _get_api_client
+    return BaseApiClient(
+        vertexai=vertexai,
+    ...<4 lines>...
+        http_options=http_options,
+    )
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\_api_client.py", line 786, in __init__
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: No API key was provided. Please pass a valid API key. Learn how to create an API key at https://ai.google.dev/gemini-api/docs/api-key.
+{"time": "2026-07-24 15:45:37,966", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session session-001"}
+{"time": "2026-07-24 15:45:37,970", "level": "ERROR", "module": "multi_agent", "message": "Unhandled Exception: POST http://localhost:8000/api/v1/orchestrate - Missing 'request' or 'user_input' in orchestration parameters"}
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\api\v1\routes.py", line 20, in trigger_agents
+    decision = await run_adk_orchestration(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\core\adk_runner.py", line 55, in run_adk_orchestration
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Missing 'request' or 'user_input' in orchestration parameters
+{"time": "2026-07-24 15:51:38,262", "level": "WARNING", "module": "multi_agent", "message": "Validation Error: POST http://localhost:8000/api/v1/orchestrate - [{'type': 'missing', 'loc': ('body', 'user_input'), 'msg': 'Field required', 'input': {'session_id': 'test-session-001', 'parameters': {'request': 'We have increasing demand, low inventory, and limited warehouse capacity. Should we increase production and reorder inventory?'}}}]"}
+{"time": "2026-07-24 15:53:01,322", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session test-session-001"}
+{"time": "2026-07-24 15:53:01,507", "level": "ERROR", "module": "multi_agent", "message": "Unhandled Exception: POST http://localhost:8000/api/v1/orchestrate - No API key was provided. Please pass a valid API key. Learn how to create an API key at https://ai.google.dev/gemini-api/docs/api-key."}
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 601, in _drive_root_node
+    await root_ctx._run_node_internal(
+    ...<3 lines>...
+    )
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\context.py", line 603, in _run_node_internal
+    raise DynamicNodeFailError(
+    ...<3 lines>...
+    )
+google.adk.workflow._errors.DynamicNodeFailError: Dynamic node planner_agent failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\api\v1\routes.py", line 20, in trigger_agents
+    decision = await run_adk_orchestration(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\core\adk_runner.py", line 41, in run_adk_orchestration
+    plan = await planner_agent.plan(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\agents\planner_agent.py", line 125, in plan
+    async for event in self.runner.run_async(
+    ...<11 lines>...
+                final_text = event.content.parts[0].text
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 1111, in run_async
+    async for event in agen:
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 628, in _run_node_async
+    await self._cleanup_root_task(task, self.agent.name)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 906, in _cleanup_root_task
+    await task
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 610, in _drive_root_node
+    raise e.error
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_node_runner.py", line 136, in run
+    await self._execute_node(ctx, node_input)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_node_runner.py", line 274, in _execute_node
+    await self._run_node_loop(ctx, node_input)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_node_runner.py", line 288, in _run_node_loop
+    async for event in agen:
+      self._track_event_in_context(event, ctx)
+      await self._enqueue_event(event, ctx)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_base_node.py", line 166, in run
+    async for item in agen:
+    ...<12 lines>...
+        yield Event(output=validated)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\llm_agent.py", line 601, in _run_impl
+    async for event in agen:
+    ...<4 lines>...
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_llm_agent_wrapper.py", line 370, in run_llm_agent_as_node
+    async for event in run_iter:
+    ...<22 lines>...
+        break
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\base_agent.py", line 306, in run_async
+    async for event in agen:
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\llm_agent.py", line 550, in _run_async_impl
+    async for event in agen:
+    ...<8 lines>...
+        should_pause = True
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 932, in run_async
+    async for event in agen:
+      last_event = event
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1011, in _run_one_step_async
+    async for llm_response in agen:
+    ...<13 lines>...
+          yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1453, in _call_llm_async
+    async for event in agen:
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1431, in _call_llm_with_tracing
+    async for llm_response in agen:
+    ...<18 lines>...
+      yield llm_response
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1514, in _run_and_handle_error
+    async for response in agen:
+      yield response
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 418, in _run_and_handle_error
+    raise model_error
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 395, in _run_and_handle_error
+    async for llm_response in agen:
+      tel_ctx.record_llm_response(invocation_context, llm_response)
+      yield llm_response
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 197, in generate_content_async
+    await self._preprocess_request(llm_request)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 507, in _preprocess_request
+    if self._api_backend == GoogleLLMVariant.GEMINI_API:
+       ^^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\functools.py", line 1026, in __get__
+    val = self.func(instance)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 369, in _api_backend
+    if self.api_client.vertexai
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\functools.py", line 1026, in __get__
+    val = self.func(instance)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 363, in api_client
+    return Client(**kwargs)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\client.py", line 359, in __init__
+    self._api_client = self._get_api_client(
+                       ~~~~~~~~~~~~~~~~~~~~^
+        vertexai=resolved_vertexai,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        http_options=http_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\client.py", line 411, in _get_api_client
+    return BaseApiClient(
+        vertexai=vertexai,
+    ...<4 lines>...
+        http_options=http_options,
+    )
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\_api_client.py", line 786, in __init__
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: No API key was provided. Please pass a valid API key. Learn how to create an API key at https://ai.google.dev/gemini-api/docs/api-key.
+{"time": "2026-07-24 15:59:27,386", "level": "INFO", "module": "multi_agent", "message": "Received orchestration trigger for session test-session-001"}
+{"time": "2026-07-24 15:59:29,455", "level": "ERROR", "module": "multi_agent", "message": "Unhandled Exception: POST http://localhost:8000/api/v1/orchestrate - 
+On how to mitigate this issue, please refer to:
+
+https://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted
+
+
+429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': "Quota exceeded for quota metric 'Generate Content API requests per minute' and limit 'GenerateContent request limit per minute for a region' of service 'generativelanguage.googleapis.com' for consumer 'project_number:694142308348'.", 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'RATE_LIMIT_EXCEEDED', 'domain': 'googleapis.com', 'metadata': {'quota_limit_value': '0', 'quota_unit': '1/min/{project}/{region}', 'quota_location': 'asia-southeast1', 'service': 'generativelanguage.googleapis.com', 'consumer': 'projects/694142308348', 'quota_metric': 'generativelanguage.googleapis.com/generate_content_requests', 'quota_limit': 'GenerateContentRequestsPerMinutePerProjectPerRegion'}}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Request a higher quota limit.', 'url': 'https://cloud.google.com/docs/quotas/help/request_increase'}]}]}}"}
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 282, in generate_content_async
+    response = await self.api_client.aio.models.generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\models.py", line 8848, in generate_content
+    response = await self._generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        model=model, contents=contents, config=final_parsed_config_to_call
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\models.py", line 7292, in _generate_content
+    response = await self._api_client.async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        'post', path, request_dict, http_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\_api_client.py", line 1746, in async_request
+    result = await self._async_request(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        http_request=http_request, http_options=http_options, stream=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\_api_client.py", line 1679, in _async_request
+    return await self._async_retry(  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self._async_request_once, http_request, stream
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\tenacity\__init__.py", line 418, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\tenacity\__init__.py", line 185, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\_api_client.py", line 1659, in _async_request_once
+    await errors.APIError.raise_for_async_response(client_response)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\errors.py", line 247, in raise_for_async_response
+    await cls.raise_error_async(status_code, response_json, response)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\genai\errors.py", line 269, in raise_error_async
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': "Quota exceeded for quota metric 'Generate Content API requests per minute' and limit 'GenerateContent request limit per minute for a region' of service 'generativelanguage.googleapis.com' for consumer 'project_number:694142308348'.", 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'RATE_LIMIT_EXCEEDED', 'domain': 'googleapis.com', 'metadata': {'quota_limit_value': '0', 'quota_unit': '1/min/{project}/{region}', 'quota_location': 'asia-southeast1', 'service': 'generativelanguage.googleapis.com', 'consumer': 'projects/694142308348', 'quota_metric': 'generativelanguage.googleapis.com/generate_content_requests', 'quota_limit': 'GenerateContentRequestsPerMinutePerProjectPerRegion'}}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Request a higher quota limit.', 'url': 'https://cloud.google.com/docs/quotas/help/request_increase'}]}]}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2685, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1766, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 2740, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1786, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 1265, in handle
+    await app(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 151, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 137, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 691, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 345, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\api\v1\routes.py", line 20, in trigger_agents
+    decision = await run_adk_orchestration(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\core\adk_runner.py", line 41, in run_adk_orchestration
+    plan = await planner_agent.plan(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\workSpace\Project\dump\proj\Multi-Agent-Decision-Engine\python_server\app\agents\planner_agent.py", line 125, in plan
+    async for event in self.runner.run_async(
+    ...<11 lines>...
+                final_text = event.content.parts[0].text
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 1111, in run_async
+    async for event in agen:
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 628, in _run_node_async
+    await self._cleanup_root_task(task, self.agent.name)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 906, in _cleanup_root_task
+    await task
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\runners.py", line 610, in _drive_root_node
+    raise e.error
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_node_runner.py", line 136, in run
+    await self._execute_node(ctx, node_input)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_node_runner.py", line 274, in _execute_node
+    await self._run_node_loop(ctx, node_input)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_node_runner.py", line 288, in _run_node_loop
+    async for event in agen:
+      self._track_event_in_context(event, ctx)
+      await self._enqueue_event(event, ctx)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_base_node.py", line 166, in run
+    async for item in agen:
+    ...<12 lines>...
+        yield Event(output=validated)
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\llm_agent.py", line 601, in _run_impl
+    async for event in agen:
+    ...<4 lines>...
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\workflow\_llm_agent_wrapper.py", line 370, in run_llm_agent_as_node
+    async for event in run_iter:
+    ...<22 lines>...
+        break
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\base_agent.py", line 306, in run_async
+    async for event in agen:
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\agents\llm_agent.py", line 550, in _run_async_impl
+    async for event in agen:
+    ...<8 lines>...
+        should_pause = True
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 932, in run_async
+    async for event in agen:
+      last_event = event
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1011, in _run_one_step_async
+    async for llm_response in agen:
+    ...<13 lines>...
+          yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1453, in _call_llm_async
+    async for event in agen:
+      yield event
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1431, in _call_llm_with_tracing
+    async for llm_response in agen:
+    ...<18 lines>...
+      yield llm_response
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 1514, in _run_and_handle_error
+    async for response in agen:
+      yield response
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 418, in _run_and_handle_error
+    raise model_error
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\flows\llm_flows\base_llm_flow.py", line 395, in _run_and_handle_error
+    async for llm_response in agen:
+      tel_ctx.record_llm_response(invocation_context, llm_response)
+      yield llm_response
+  File "C:\Users\dell\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\adk\models\google_llm.py", line 302, in generate_content_async
+    raise _ResourceExhaustedError(ce) from ce
+google.adk.models.google_llm._ResourceExhaustedError: 
+On how to mitigate this issue, please refer to:
+
+https://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted
+
+
+429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': "Quota exceeded for quota metric 'Generate Content API requests per minute' and limit 'GenerateContent request limit per minute for a region' of service 'generativelanguage.googleapis.com' for consumer 'project_number:694142308348'.", 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'RATE_LIMIT_EXCEEDED', 'domain': 'googleapis.com', 'metadata': {'quota_limit_value': '0', 'quota_unit': '1/min/{project}/{region}', 'quota_location': 'asia-southeast1', 'service': 'generativelanguage.googleapis.com', 'consumer': 'projects/694142308348', 'quota_metric': 'generativelanguage.googleapis.com/generate_content_requests', 'quota_limit': 'GenerateContentRequestsPerMinutePerProjectPerRegion'}}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Request a higher quota limit.', 'url': 'https://cloud.google.com/docs/quotas/help/request_increase'}]}]}}

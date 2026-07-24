@@ -1,7 +1,7 @@
 from fastapi import Request, status
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
-from app.core.logging import logger
+from core.logging import logger
 
 class AppError(Exception):
     """Custom exception matching the Node.js AppError pattern."""
