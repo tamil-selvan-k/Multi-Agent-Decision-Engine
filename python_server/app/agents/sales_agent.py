@@ -14,12 +14,12 @@ class SalesAgent:
     def __init__(self, name: str = "SalesAgent"):
         self.name = name
 
-    def run(self):
+    def run(self) -> AgentRecommendation:
         """
         Run the Sales Agent.
 
         Returns:
-            dict: Sales analysis and recommendation.
+            AgentRecommendation: Sales analysis and recommendation details.
         """
 
         sales_data = fetch_sales_data()
@@ -55,11 +55,15 @@ class SalesAgent:
             "production_recommendation": production,
         }
 
-        return {
-            "agent": "SalesAgent",
-            "recommendation": recommendation,
-            "metrics": metrics,
-        }
+        # Retrieve confidence score from the forecast model
+        confidence = float(forecast.get("confidence", 0.90))
+
+        return AgentRecommendation(
+            agent_name=self.name,
+            recommendation=recommendation,
+            confidence=confidence,
+            metrics=metrics,
+        )
 
 
 sales_agent = SalesAgent()
