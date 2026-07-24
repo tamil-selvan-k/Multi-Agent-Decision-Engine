@@ -16,3 +16,6 @@ class Settings(BaseSettings):
         case_sensitive = True
 
 settings = Settings()
+settings = Settings()
+
+print("DATABASE_URL =", settings.DATABASE_URL)

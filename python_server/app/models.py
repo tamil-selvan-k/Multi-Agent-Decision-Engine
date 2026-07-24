@@ -82,6 +82,33 @@ class BudgetImpact(Base):
     remaining_budget = Column(Integer)
     cashflow = Column(String)
 
+class FinancialHistory(Base):
+    __tablename__ = "financial_history"
+
+    id = Column(Integer, primary_key=True, index=True)
+    month = Column(String, index=True)
+    department = Column(String)
+    budget = Column(Integer)
+    spending = Column(Integer)
+    revenue = Column(Integer)
+    operational_cost = Column(Integer)
+    procurement_cost = Column(Integer)
+
+class FinancialRisk(Base):
+    __tablename__ = "financial_risk"
+
+    id = Column(Integer, primary_key=True, index=True)
+    risk_score = Column(Float)
+    risk_level = Column(String)
+
+class FinancialROI(Base):
+    __tablename__ = "financial_roi"
+
+    id = Column(Integer, primary_key=True, index=True)
+    roi = Column(Float)
+    profitable = Column(Boolean)
+    expected_return = Column(Integer)
+    
 class Shipment(Base):
     __tablename__ = "shipment"
 
