@@ -1,32 +1,45 @@
+import { Worker } from 'worker_threads';
+import path from 'path';
 import { AppError } from '@utils/AppError';
 
 export class DecisionService {
-    public static async runDecisionCycle(parameters?: Record<string, any>) {
+    public static async runDecisionCycle(parameters?: Record<string, any>): Promise<any> {
         const sessionId = `session_${Date.now()}`;
         const pythonServiceUrl = process.env.PYTHON_SERVICE_URL || 'http://localhost:3001/api/v1/orchestrate';
 
-        const response = await fetch(pythonServiceUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                session_id: sessionId,
-                parameters: parameters || {},
-            }),
-        });
-
-        const data: any = await response.json();
-
-        if (!response.ok) {
-            throw new AppError(
-                data.message || 'Failed to communicate with Python AI Orchestration service',
-                response.status,
-                data.errors || []
+        return new Promise((resolve, reject) => {
+            const isTs = __filename.endsWith('.ts');
+            const workerPath = path.resolve(
+                __dirname,
+                '..',
+                '..',
+                'workers',
+                `decision.worker.${isTs ? 'ts' : 'js'}`
             );
-        }
 
-        return data;
+            const worker = new Worker(workerPath, {
+                workerData: { sessionId, parameters, pythonServiceUrl },
+                execArgv: isTs ? ['-r', 'tsx'] : [],
+            });
+
+            worker.on('message', (result) => {
+                if (result.success) {
+                    resolve(result.data);
+                } else {
+                    reject(new AppError(result.message, result.status, result.errors));
+                }
+            });
+
+            worker.on('error', (err: any) => {
+                reject(new AppError(err.message || 'Worker thread encountered an unexpected error', 500));
+            });
+
+            worker.on('exit', (code) => {
+                if (code !== 0) {
+                    reject(new AppError(`Worker thread stopped with exit code ${code}`, 500));
+                }
+            });
+        });
     }
 
     public static async getDecisionHistory() {
