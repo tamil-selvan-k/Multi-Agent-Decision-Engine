@@ -171,10 +171,46 @@ class Shipment(Base):
     __tablename__ = "shipment"
 
     id = Column(Integer, primary_key=True, index=True)
-    shipment_id = Column(String, index=True)
+
+    shipment_id = Column(String, unique=True, index=True)
+
+    order_id = Column(String)
+
+    supplier_id = Column(String)
+
+    supplier_name = Column(String)
+
+    warehouse_id = Column(String)
+
     origin = Column(String)
+
     destination = Column(String)
+
+    vehicle_type = Column(String)
+
+    distance_km = Column(Float)
+
+    dispatch_date = Column(String)
+
+    eta = Column(Float)
+
+    actual_delivery_date = Column(String)
+
+    transportation_cost = Column(Float)
+
     status = Column(String)
+
+    delay_hours = Column(Float)
+
+    lead_time = Column(Integer)
+
+    supplier_reliability = Column(Float)
+
+    quality_score = Column(Float)
+
+    on_time_delivery = Column(Float)
+
+    available_stock = Column(Integer)
 
 class RouteOptimization(Base):
     __tablename__ = "route_optimization"
@@ -196,5 +232,17 @@ class WarehouseAssignment(Base):
     id = Column(Integer, primary_key=True, index=True)
     recommended_warehouse = Column(String)
 
+class DeliveryRisk(Base):
+    __tablename__ = "delivery_risk"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    risk_score = Column(Float)
+
+    risk_level = Column(String)
+
+    reason = Column(String)
+
 # Create tables
+
 Base.metadata.create_all(bind=engine)

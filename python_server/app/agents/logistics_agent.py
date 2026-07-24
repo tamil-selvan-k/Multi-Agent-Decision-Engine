@@ -1,36 +1,58 @@
-from app.tools.logistics_tools import fetch_shipments, optimize_routes, delivery_eta, warehouse_assignment
+from app.tools.logistics_tools import (
+    fetch_shipments,
+    warehouse_assignment,
+    optimize_routes,
+    delivery_eta,
+    calculate_transport_cost,
+    delivery_risk_analysis,
+)
+
 from app.schemas.recommendation import AgentRecommendation
+
 
 class LogisticsAgent:
     def __init__(self, name: str = "LogisticsAgent"):
         self.name = name
 
     def run(self) -> AgentRecommendation:
-        # Step 1: Fetch shipments
+        # Step 1: Fetch shipment data
         shipments = fetch_shipments()
-        # Step 2: Optimize routes
-        routes = optimize_routes()
-        # Step 3: Delivery ETA
-        eta = delivery_eta()
-        # Step 4: Warehouse assignment
+
+        # Step 2: Warehouse assignment
         warehouse = warehouse_assignment()
 
-        # Build recommendation text
+        # Step 3: Route optimization
+        routes = optimize_routes()
+
+        # Step 4: Delivery ETA
+        eta = delivery_eta()
+
+        # Step 5: Transportation cost
+        transport_cost = calculate_transport_cost()
+
+        # Step 6: Delivery risk analysis
+        risk = delivery_risk_analysis()
+
         recommendation_text = (
-            f"Active shipments: {len(shipments)} items, "
-            f"optimized route: {routes['best_route']} (distance: {routes['total_distance_km']} km), "
-            f"ETA: {eta['estimated_delivery_hours']} hours with {eta['delay_probability']*100:.0f}% delay probability, "
-            f"recommended warehouse: {warehouse['recommended_warehouse']}"
+            f"Processed {len(shipments)} shipment(s). "
+            f"Recommended warehouse: {warehouse['recommended_warehouse']}. "
+            f"Optimized delivery distance: {routes['total_distance_km']} km. "
+            f"Estimated delivery time: {eta['estimated_delivery_hours']} hours "
+            f"(Delay Probability: {eta['delay_probability'] * 100:.0f}%). "
+            f"Average transport cost: ₹{transport_cost['average_transport_cost']:.2f}. "
+            f"Delivery Risk: {risk['risk_level']} "
+            f"(Score: {risk['risk_score']})."
         )
 
-        # Confidence could be based on route optimization quality etc.
         confidence = 0.90
 
         metrics = {
             "shipments": shipments,
+            "warehouse_assignment": warehouse,
             "routes": routes,
             "eta": eta,
-            "warehouse_assignment": warehouse
+            "transport_cost": transport_cost,
+            "delivery_risk": risk,
         }
 
         return AgentRecommendation(
@@ -39,5 +61,6 @@ class LogisticsAgent:
             confidence=confidence,
             metrics=metrics,
         )
+
 
 logistics_agent = LogisticsAgent()
