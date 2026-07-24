@@ -5,16 +5,33 @@ class SalesData(Base):
     __tablename__ = "sales_data"
 
     id = Column(Integer, primary_key=True, index=True)
-    date = Column(String, index=True)  # storing as string for simplicity, e.g., "2025-01"
-    sales = Column(Integer)
+
+    order_id = Column(String, nullable=False)
+
+    date = Column(String, index=True, nullable=False)
+
+    product_id = Column(String, nullable=False)
+    product_name = Column(String, nullable=False)
+
+    quantity = Column(Integer, nullable=False)
+
+    selling_price = Column(Float, nullable=False)
+
+    revenue = Column(Float, nullable=False)
+
+    region = Column(String, nullable=False)
+
+    sales = Column(Float, nullable=False)
 
 class ForecastData(Base):
     __tablename__ = "forecast_data"
 
     id = Column(Integer, primary_key=True, index=True)
-    forecast = Column(Integer)
-    confidence = Column(Float)
 
+    forecast = Column(Float)
+
+    confidence = Column(Float)
+    
 class GrowthData(Base):
     __tablename__ = "growth_data"
 
@@ -242,6 +259,21 @@ class DeliveryRisk(Base):
     risk_level = Column(String)
 
     reason = Column(String)
+class RevenueAnalysis(Base):
+    __tablename__ = "revenue_analysis"
+
+    id = Column(Integer, primary_key=True, index=True)
+    total_revenue = Column(Float)
+    average_order_value = Column(Float)
+    highest_sale = Column(Float)
+
+class TopSellingProduct(Base):
+    __tablename__ = "top_selling_product"
+
+    id = Column(Integer, primary_key=True, index=True)
+    product_id = Column(String)
+    product_name = Column(String)
+    units_sold = Column(Integer)
 
 # Create tables
 
